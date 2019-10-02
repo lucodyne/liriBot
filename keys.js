@@ -1,10 +1,9 @@
+require("dotenv").config()
 exports.spotifyKey = {
-  // id: process.env.SPOTIFY_ID,
-  id: "33faaa833c074cee95cb4bd3db4fb030",
-  // secret: process.env.SPOTIFY_SECRET,
-  secret: "fef04a0c7dee46ab899fb77056876fff"
+  id: process.env.SPOTIFY_ID,
+  secret: process.env.SPOTIFY_SECRET,
 };
+console.log(process.env.SPOTIFY_ID)
 exports.omdbKey = {
-  key: "trilogy"
-  // key: process.env.OMDB_KEY
+  key: process.env.OMDB_KEY
 };
