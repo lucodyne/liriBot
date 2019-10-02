@@ -1,7 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
 const Spotify = require("node-spotify-api");
-const keys = require("./keys.js");
+const keys = require("./keys");
 console.log(keys.spotifyKey);
 const spotify = new Spotify(keys.spotifyKey);
 
@@ -14,7 +14,7 @@ if (process.argv[2] == "omdb") {
   if (searchString) {
     axios
       .get(
-        `http://www.omdbapi.com/?t=${searchString}&y=&plot=short&apikey=${keys.omdbKey}`
+        `http://www.omdbapi.com/?t=${searchString}&y=&plot=short&apikey=${keys.omdbKey.key}`
       )
       .then(function(response) {
         const movieInfo = [
