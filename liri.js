@@ -1,7 +1,9 @@
-const dotenv = require("dotenv");
+require("dotenv").config();
 const axios = require("axios");
-const spotify = require("node-spotify-api");
-const keys = require("./keys");
+const Spotify = require("node-spotify-api");
+const keys = require("./keys.js");
+console.log(keys);
+const spotify = new Spotify(keys.spotifyKey);
 
 const [, , , ...args] = process.argv;
 const searchString = args.join(" ");
