@@ -46,19 +46,26 @@ if (process.argv[2] == "omdb") {
   }
 } else if (process.argv[2] == "spotify") {
   if (searchString) {
-    spotify.search({ type: "track", query: searchString }, function(
+    spotify.search({ type: "track", query: searchString, limit: 5 }, function(
       error,
       data
     ) {
       if (error) {
         return console.log("Error occurred: " + error);
       }
-      console.log(`Song title: ${data.tracks.items[0].name}`);
-      const artistsArray = [];
-      data.tracks.items[0].artists.forEach(element => {
-        artistsArray.push(element.name);
+      data.tracks.items.forEach(element => {
+        console.log(`***********************`);
+        console.log(`Song title: ${element.name}`);
+        const artistsArray = [];
+        element.artists.forEach(artist => {
+          artistsArray.push(artist.name);
+        });
+        console.log(`Artist(s): ${artistsArray.join(", ")}`);
+        if (element.preview_url) {
+          console.log(`Preview: ${element.preview_url}`);
+        }
+        console.log(`Album: ${element.album.name}`);
       });
-      console.log(`Artist(s): ${artistsArray.join(", ")}`);
     });
   } else {
     console.log(`What song would you like to know about?`);
@@ -72,10 +79,10 @@ if (process.argv[2] == "omdb") {
       .then(function(response) {
         if (response.data.events[0]) {
           response.data.events.forEach(element => {
+            console.log(`***********************`);
             console.log(`Venue: ${element.venue.name}`);
             console.log(`Location: ${element.venue.display_location}`);
             console.log(moment(element.datetime_local).format("DD/MMM/YYYY"));
-            console.log(`***********************`);
           });
         } else {
           console.log(`Sorry, I couldn't find anything.`);
