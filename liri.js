@@ -3,6 +3,7 @@ const axios = require("axios");
 const Spotify = require("node-spotify-api");
 const keys = require("./keys");
 const spotify = new Spotify(keys.spotifyKey);
+const moment = require("moment");
 
 const [, , , ...args] = process.argv;
 const searchString = args.join(" ");
@@ -69,7 +70,16 @@ if (process.argv[2] == "omdb") {
         `https://api.seatgeek.com/2/events?performers.slug=${searchString}&client_id=${keys.seatGeekKey.client_id}`
       )
       .then(function(response) {
-        console.log(response);
+        if (response.data.events[0]) {
+          response.data.events.forEach(element => {
+            console.log(`Venue: ${element.venue.name}`);
+            console.log(`Location: ${element.venue.display_location}`);
+            console.log(moment(element.datetime_local).format("DD/MMM/YYYY"));
+            console.log(`***********************`);
+          });
+        } else {
+          console.log(`Sorry, I couldn't find anything.`);
+        }
       })
       .catch(function(error) {
         if (error) {
@@ -77,7 +87,7 @@ if (process.argv[2] == "omdb") {
         }
       });
   } else {
-    console.log(`A`);
+    console.log(`Enter an artist to search for concerts.`);
   }
 } else {
   console.log(
