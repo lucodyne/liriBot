@@ -2,7 +2,6 @@ require("dotenv").config();
 const axios = require("axios");
 const Spotify = require("node-spotify-api");
 const keys = require("./keys");
-console.log(keys.spotifyKey);
 const spotify = new Spotify(keys.spotifyKey);
 
 const [, , , ...args] = process.argv;
@@ -63,4 +62,25 @@ if (process.argv[2] == "omdb") {
   } else {
     console.log(`What song would you like to know about?`);
   }
+} else if (process.argv[2] == "seatgeek") {
+  if (searchString) {
+    axios
+      .get(
+        `https://api.seatgeek.com/2/events?performers.slug=${searchString}&client_id=${keys.seatGeekKey.client_id}`
+      )
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        if (error) {
+          console.log(error);
+        }
+      });
+  } else {
+    console.log(`A`);
+  }
+} else {
+  console.log(
+    `I couldn't find that. Search with "omdb", "spotify", or "seatgeek".`
+  );
 }
