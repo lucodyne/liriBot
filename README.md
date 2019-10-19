@@ -50,7 +50,7 @@ Alternatively, you can also watch me awkwardly demo the whole app here:
 <video controls="controls">
 
   <source type="video/mp4" src="testvid.mp4"></source>
-  <p>Your browser does not support the video element.</p>
+  <p>Coming soon!(when I figure out how to do this :P)</p>
 </video>
 
 ---
