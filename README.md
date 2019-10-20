@@ -32,8 +32,8 @@ We'll also need a few node packages before we get LIRI working:
 
 Don't worry about doing this manually; the included `package.json` will help here.
 
-```
-$ npm i
+```javascript
+$ npm i // this should work well enough
 ```
 
 ---
@@ -46,12 +46,7 @@ Here's an example:
 
 ![spotify demo](./demoSpotifyYouth.gif)
 
-Alternatively, you can also watch me awkwardly demo the whole app here:
-<video controls="controls">
-
-  <source type="video/mp4" src="testvid.mp4"></source>
-  <p>Coming soon!(when I figure out how to do this :P)</p>
-</video>
+Alternatively, you can also watch me awkwardly demo the whole app [here](https://youtu.be/v3DUZVxGWX8).
 
 ---
 
